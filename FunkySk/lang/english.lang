@@ -1,0 +1,26 @@
+version: 1.0.0
+
+#@an makes the pattern allow for `an`.
+types:
+	fadetype: fade type, fading type
+	soundcategory: sound category, sound categories
+	songplayer: song player, song players
+	positionsongplayer: position player, position players, position song player, position song players
+	
+
+# The fade type of a NoteBlockAPI song.
+fadetypes:
+	fade_linear: fade linear, fade straight, linear, straight
+
+# The sound category that sounds are played to the player from.
+soundcategorys:
+	master: master
+	music: music
+	records: record, records
+	weather: weather
+	blocks: block, blocks
+	hostile: hostile, monsters
+	neutral: neutral
+	players: player, players
+	ambient: ambient
+	voice: voice, narrator
