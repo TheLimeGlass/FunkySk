@@ -1,0 +1,6 @@
+name: FunkySk
+author: LimeGlass
+description: A Skript addon to get funky with NoteBlockAPI.
+version: 1.0.1b
+main: me.limeglass.funky.Funky
+depend: [Skript, NoteBlockAPI]
