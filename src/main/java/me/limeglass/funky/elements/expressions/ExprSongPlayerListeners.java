@@ -21,7 +21,7 @@ import me.limeglass.funky.utils.annotations.Settable;
 
 @Name("Song player users")
 @Description("Returns the listeners of the song player(s).")
-@Properties({"songplayers", "(player|listener)[s]", "{1}[(all [[of] the]|the)]"})
+@Properties({"funkysongplayers", "(player|listener)[s]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("song[ ]player[s]")
 @AllChangers
 @Settable({Player[].class, String[].class})

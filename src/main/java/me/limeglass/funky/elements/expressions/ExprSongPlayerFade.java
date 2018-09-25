@@ -17,7 +17,7 @@ import me.limeglass.funky.utils.annotations.RegisterEnum;
 
 @Name("Song fade type")
 @Description("Returns the fade type of the song player(s). The fade type is how the song fades. Currently there is only linear")
-@Properties({"songplayers", "fad(e|ing)[[ ]type][s]", "{1}[(all [[of] the]|the)]"})
+@Properties({"funkysongplayers", "fad(e|ing)[[ ]type][s]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("[song[ ]player[s]]")
 @RegisterEnum("fadetype")
 @Changers(ChangeMode.SET)

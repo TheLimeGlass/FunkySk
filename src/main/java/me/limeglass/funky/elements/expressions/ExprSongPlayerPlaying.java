@@ -15,7 +15,7 @@ import me.limeglass.funky.utils.annotations.PropertiesAddition;
 
 @Name("Song player playing")
 @Description("Returns if the song player(s) are playing or not.")
-@Properties({"songplayers", "[music] playing [state[s]]", "{1}[(all [[of] the]|the)]"})
+@Properties({"funkysongplayers", "[music] playing [state[s]]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("song[ ]player[s]")
 @Changers(ChangeMode.SET)
 public class ExprSongPlayerPlaying extends FunkyPropertyExpression<SongPlayer, Boolean> {

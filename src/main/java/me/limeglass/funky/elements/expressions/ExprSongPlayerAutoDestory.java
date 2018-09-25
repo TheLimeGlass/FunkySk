@@ -15,7 +15,7 @@ import me.limeglass.funky.utils.annotations.PropertiesAddition;
 
 @Name("Song player destroy")
 @Description("Returns if the song player(s) should destroy on finish.")
-@Properties({"songplayers", "[auto] destroy[s]", "{1}[(all [[of] the]|the)]"})
+@Properties({"funkysongplayers", "[auto] destroy[s]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("song[ ]player[s]")
 @Changers(ChangeMode.SET)
 public class ExprSongPlayerAutoDestory extends FunkyPropertyExpression<SongPlayer, Boolean> {

@@ -15,7 +15,7 @@ import me.limeglass.funky.utils.annotations.PropertiesAddition;
 
 @Name("Song fade start")
 @Description("Returns the fade starting time of the song player(s).")
-@Properties({"songplayers", "fad(e|ing)[ ]start[ing] [time][s]", "{1}[(all [[of] the]|the)]"})
+@Properties({"funkysongplayers", "fad(e|ing)[ ]start[ing] [time][s]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("[song[ ]player[s]]")
 @Changers(ChangeMode.SET)
 public class ExprSongPlayerFadeStart extends FunkyPropertyExpression<SongPlayer, Number> {

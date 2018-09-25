@@ -15,7 +15,7 @@ import me.limeglass.funky.utils.annotations.PropertiesAddition;
 
 @Name("Song fade target")
 @Description("Returns the fade target of the song player(s).")
-@Properties({"songplayers", "fad(e|ing)[ ]target[s]", "{1}[(all [[of] the]|the)]"})
+@Properties({"funkysongplayers", "fad(e|ing)[ ]target[s]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("[song[ ]player[s]]")
 @Changers(ChangeMode.SET)
 public class ExprSongPlayerFadeTarget extends FunkyPropertyExpression<SongPlayer, Number> {

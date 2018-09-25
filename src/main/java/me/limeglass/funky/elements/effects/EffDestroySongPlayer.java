@@ -11,7 +11,7 @@ import me.limeglass.funky.utils.annotations.Patterns;
 
 @Name("Destroy song player")
 @Description("Destory/Remove the song player(s).")
-@Patterns("(destroy|remove) [note[[ ]block]] song[ ]player[s] %songplayers%")
+@Patterns("(destroy|remove) [note[[ ]block]] song[ ]player[s] %funkysongplayers%")
 public class EffDestroySongPlayer extends FunkyEffect {
 
 	@Override

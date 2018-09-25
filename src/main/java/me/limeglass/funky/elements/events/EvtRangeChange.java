@@ -37,7 +37,7 @@ public class EvtRangeChange extends SkriptEvent {
 				return event.getPlayer();
 			}
 		}, 0);
-		Events.registerEvent(EvtRangeChange.class, PlayerRangeStateChangeEvent.class, "[player] range [state] change [(of|for) %-player/songplayer%]");
+		Events.registerEvent(EvtRangeChange.class, PlayerRangeStateChangeEvent.class, "[player] range [state] change [(of|for) %-player/funkysongplayer%]");
 	}
 
 	@SuppressWarnings("unchecked")

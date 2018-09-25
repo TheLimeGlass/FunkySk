@@ -4,7 +4,6 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.bukkit.event.Event;
 
 import ch.njol.skript.classes.Changer;

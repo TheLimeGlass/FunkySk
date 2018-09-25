@@ -15,7 +15,7 @@ import me.limeglass.funky.utils.annotations.PropertiesAddition;
 
 @Name("Song player volume")
 @Description("Returns the volume of the song player(s).")
-@Properties({"songplayers", "volume[s]", "{1}[(all [[of] the]|the)]"})
+@Properties({"funkysongplayers", "volume[s]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("song[ ]player[s]")
 @Changers(ChangeMode.SET)
 public class ExprSongPlayerVolume extends FunkyPropertyExpression<SongPlayer, Number> {

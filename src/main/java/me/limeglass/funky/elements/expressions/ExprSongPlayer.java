@@ -18,7 +18,7 @@ import me.limeglass.funky.utils.annotations.RegisterType;
 @Name("New song player")
 @Description("Returns new song player(s) from the given song(s).")
 @Patterns("[a] [new] song [music] player[s] from [the] [song[s]] %songs%")
-@RegisterType("songplayer")
+@RegisterType("funkysongplayer")
 @DetermineSingle
 public class ExprSongPlayer extends FunkyExpression<SongPlayer> {
 	

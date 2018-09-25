@@ -15,7 +15,7 @@ import me.limeglass.funky.utils.annotations.PropertiesAddition;
 
 @Name("Song player song")
 @Description("Returns the song currently playing in the song player(s).")
-@Properties({"songplayers", "(song|track|music)[s]", "{1}[(all [[of] the]|the)]"})
+@Properties({"funkysongplayers", "(song|track|music)[s]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("song[ ]player[s]")
 public class ExprSongPlayerSong extends FunkyPropertyExpression<SongPlayer, Song> {
 

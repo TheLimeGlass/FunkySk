@@ -15,7 +15,7 @@ import me.limeglass.funky.utils.annotations.PropertiesAddition;
 
 @Name("Song player tick")
 @Description("Returns the tick that the song player(s) are currently on.")
-@Properties({"songplayers", "[playing] tick[s]", "{1}[(all [[of] the]|the)]"})
+@Properties({"funkysongplayers", "[playing] tick[s]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("song[ ]player[s]")
 @Changers(ChangeMode.SET)
 public class ExprSongPlayerTick extends FunkyPropertyExpression<SongPlayer, Number> {
