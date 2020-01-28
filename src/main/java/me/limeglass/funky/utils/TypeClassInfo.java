@@ -37,8 +37,8 @@ public class TypeClassInfo<T> {
 	
 	public void register(){
 		if (Classes.getExactClassInfo(clazz) == null) {
-			Classes.registerClass(classInfo.user(codeName + "s?").defaultExpression(new EventValueExpression<>(clazz)).parser(new Parser<T>(){
-	
+			classInfo.user(codeName + "s?").defaultExpression(new EventValueExpression<>(clazz)).parser(new Parser<T>(){
+				
 				@Override
 				public String getVariableNamePattern() {
 					return codeName + ":.+";
@@ -47,6 +47,11 @@ public class TypeClassInfo<T> {
 				@Override
 				public T parse(String s, ParseContext parseContext) {
 					return null;
+				}
+				
+				@Override
+				public boolean canParse(ParseContext context) {
+					return false;
 				}
 	
 				@Override
@@ -57,7 +62,10 @@ public class TypeClassInfo<T> {
 				@Override
 				public String toVariableNameString(T t) {
 					return codeName + ':' + t.toString();
-			}}).serializeAs(clazz));
+			}}).serializeAs(clazz);
+			if (classInfo.getSerializer() == null)
+				classInfo.serializeAs(null);
+			Classes.registerClass(classInfo);
 			FunkySk.debugMessage("&5Registered Type '" + codeName + "' with return class " + clazz.getName());
 		}
 	}

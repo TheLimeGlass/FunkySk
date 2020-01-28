@@ -21,8 +21,8 @@ import me.limeglass.funky.utils.annotations.User;
 @Description("Returns the song currently playing in the song player(s).")
 @Properties({"funkysongplayers", "(song|track|music)[s]", "{1}[(all [[of] the]|the)]"})
 @PropertiesAddition("song[ ]player[s]")
-@RegisterEnum("soundcategory")
-@User("soundcategor(y|ies)")
+@RegisterEnum("funkysoundcategory")
+@User("funkysoundcategor(y|ies)")
 @Changers(ChangeMode.SET)
 public class ExprSongPlayerCategory extends FunkyPropertyExpression<SongPlayer, SoundCategory> {
 

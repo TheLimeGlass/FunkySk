@@ -29,7 +29,7 @@ public class Register {
 	
 	public Set<Class<?>> classes = new HashSet<>();
 	public Set<Class<?>> oldclasses = new HashSet<>(); 
-	private JarFile Stocksaddon;
+	private JarFile addon;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Register() {
@@ -37,16 +37,18 @@ public class Register {
 			Method method = JavaPlugin.class.getDeclaredMethod("getFile");
 			method.setAccessible(true);
 			File file = (File) method.invoke(FunkySk.getInstance());
-			Stocksaddon = new JarFile(file);
-			for (Enumeration<JarEntry> jarEntry = Stocksaddon.entries(); jarEntry.hasMoreElements();) {
+			addon = new JarFile(file);
+			for (Enumeration<JarEntry> jarEntry = addon.entries(); jarEntry.hasMoreElements();) {
 				String name = jarEntry.nextElement().getName().replace("/", ".");
+				if (!name.endsWith(".class"))
+					continue;
 				String className = name.substring(0, name.length() - 6);
 				className = className.replace('/', '.');
 				if (name.startsWith(FunkySk.getPackageName()) && name.endsWith(".class")) {
 					classes.add(Class.forName(className));
 				}
 			}
-			Stocksaddon.close();
+			addon.close();
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | IOException | ClassNotFoundException e1) {
 			e1.printStackTrace();
 		}
