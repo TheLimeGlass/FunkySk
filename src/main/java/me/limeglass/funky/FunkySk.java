@@ -16,11 +16,11 @@ import me.limeglass.funky.elements.Register;
 import me.limeglass.funky.listeners.MusicListener;
 import me.limeglass.funky.utils.Utils;
 
-public class Funky extends JavaPlugin {
+public class FunkySk extends JavaPlugin {
 	
 	private Metrics metrics;
 	private SkriptAddon addonInstance;
-	private static Funky instance;
+	private static FunkySk instance;
 	public FileConfiguration config = getConfig();
 	public static File syntaxFile;
 	private static FileConfiguration syntaxData;
@@ -28,7 +28,7 @@ public class Funky extends JavaPlugin {
 	private static String prefix = "&8[&eFunkySk&8] &e";
 	private static String nameplate = "[FunkySk] ";
 	
-	public void onEnable(){
+	public void onEnable() {
 		addonInstance = Skript.registerAddon(this).setLanguageFileDirectory("lang");
 		instance = this;
 		File file = new File(getDataFolder(), "config.yml");
@@ -57,7 +57,7 @@ public class Funky extends JavaPlugin {
 		if (!config.getBoolean("DisableRegisteredInfo", false)) Bukkit.getLogger().info(nameplate + "has been enabled!");
 	}
 	
-	public static Funky getInstance() {
+	public static FunkySk getInstance() {
 		return instance;
 	}
 	

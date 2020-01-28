@@ -19,7 +19,7 @@ import ch.njol.skript.lang.SkriptEvent;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 import me.limeglass.funky.Syntax;
 import me.limeglass.funky.utils.ReflectionUtil;
 
@@ -64,17 +64,17 @@ public class Events {
 	public static void registerEvent(@Nullable Class<? extends SkriptEvent> skriptEvent, Class<? extends Event> event, String... patterns) {
 		if (skriptEvent == null) skriptEvent = SimpleEvent.class;
 		for (int i = 0; i < patterns.length; i++) {
-			patterns[i] = Funky.getNameplate() + patterns[i];
+			patterns[i] = FunkySk.getNameplate() + patterns[i];
 		}
 		Object[] values = new Object[] {true, patterns, getEventValues(event)};
 		String[] nodes = new String[] {"enabled", "patterns", "eventvalues"};
 		for (int i = 0; i < nodes.length; i++) {
-			if (!Funky.getSyntaxData().isSet("Syntax.Events." + event.getSimpleName() + "." + nodes[i])) {
-				Funky.getSyntaxData().set("Syntax.Events." + event.getSimpleName() + "." + nodes[i], values[i]);
+			if (!FunkySk.getSyntaxData().isSet("Syntax.Events." + event.getSimpleName() + "." + nodes[i])) {
+				FunkySk.getSyntaxData().set("Syntax.Events." + event.getSimpleName() + "." + nodes[i], values[i]);
 			}
 		}
 		Syntax.save();
-		if (Funky.getSyntaxData().getBoolean("Syntax.Events." + event.getSimpleName() + ".enabled", true)) {
+		if (FunkySk.getSyntaxData().getBoolean("Syntax.Events." + event.getSimpleName() + ".enabled", true)) {
 			//TODO find a way to make the stupid Spigot Yaml read properly for user editing of event patterns.
 			Skript.registerEvent(event.getSimpleName(), skriptEvent, event, patterns);
 		}

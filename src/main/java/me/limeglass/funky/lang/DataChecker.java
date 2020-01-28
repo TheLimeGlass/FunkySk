@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import org.bukkit.event.Event;
 
 import ch.njol.skript.lang.Expression;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 
 public interface DataChecker {
 
@@ -17,12 +17,12 @@ public interface DataChecker {
 		for (Expression<?> expression : expressions.getExpressions()) {
 			if (expression == null) return true;
 			if (expression.isSingle() && expression.getSingle(event) == null) {
-				Funky.debugMessage("An expression was null: " + expression.toString(event, true));
+				FunkySk.debugMessage("An expression was null: " + expression.toString(event, true));
 				return true;
 			} else if (expression.getAll(event) == null || expression.getAll(event).length == 0) {
 				ArrayList<String> nulledExpressions = new ArrayList<String>();
 				Arrays.stream(expressions.getExpressions()).filter(expr -> expr != null && expr.getAll(event) != null && expr.getAll(event).length == 0).forEach(expr -> nulledExpressions.add(expr.toString(event, true)));
-				Funky.debugMessage("Expressions were null: " + nulledExpressions.toString());
+				FunkySk.debugMessage("Expressions were null: " + nulledExpressions.toString());
 				return true;
 			}
 		}
@@ -35,12 +35,12 @@ public interface DataChecker {
 		if (map == null || map.isEmpty()) return true;
 		for (Entry<Expression<?>, T[]> entry : map.entrySet()) {
 			if (entry.getKey() != null && entry.getKey().isSingle() && entry.getKey().getSingle(event) == null) {
-				Funky.debugMessage("An expression was null: " + entry.getKey().toString(event, true));
+				FunkySk.debugMessage("An expression was null: " + entry.getKey().toString(event, true));
 				return true;
 			} else if (entry.getKey() != null && entry.getKey().getAll(event).length == 0 || entry.getKey().getAll(event) == null) {
 				ArrayList<String> nulledExpressions = new ArrayList<String>();
 				Arrays.stream(expressions.getExpressions()).filter(expr -> expr != null && expr.getAll(event).length == 0 || expr.getAll(event) == null).forEach(expr -> nulledExpressions.add(expr.toString(event, true)));
-				Funky.debugMessage("Expressions were null: " + nulledExpressions.toString());
+				FunkySk.debugMessage("Expressions were null: " + nulledExpressions.toString());
 				return true;
 			}
 		}
@@ -51,10 +51,10 @@ public interface DataChecker {
 		Expression<?> expression = expressions.get(index);
 		if (expression == null) return true;
 		if (expression != null && expression.isSingle() && expression.getSingle(event) == null) {
-			Funky.debugMessage("The expression at index " + index + " was null: " + expression.toString(event, true));
+			FunkySk.debugMessage("The expression at index " + index + " was null: " + expression.toString(event, true));
 			return true;
 		} else if (expression != null && expression.getAll(event).length == 0 || expression.getAll(event) == null) {
-			Funky.debugMessage("The list expression at index " + index + " was null: " + expression.toString(event, true));
+			FunkySk.debugMessage("The list expression at index " + index + " was null: " + expression.toString(event, true));
 			return true;
 		}
 		return false;

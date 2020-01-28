@@ -14,7 +14,7 @@ import com.xxmicloxx.NoteBlockAPI.Song;
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Name;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 import me.limeglass.funky.lang.FunkyExpression;
 import me.limeglass.funky.utils.annotations.DetermineSingle;
 import me.limeglass.funky.utils.annotations.Patterns;
@@ -42,7 +42,7 @@ public class ExprSong extends FunkyExpression<Song> {
 				if (file.exists()) {
 					songs.add(NBSDecoder.parse(file));
 				} else {
-					if (Funky.getInstance().getConfig().getBoolean("InvalidFile")) Skript.error("The file for the song " + file.getAbsolutePath() + " does not exist!");
+					if (FunkySk.getInstance().getConfig().getBoolean("InvalidFile")) Skript.error("The file for the song " + file.getAbsolutePath() + " does not exist!");
 				}
 			}
 		}
@@ -55,7 +55,7 @@ public class ExprSong extends FunkyExpression<Song> {
 			InputStream input = new URL(link).openStream();
 			if (input != null) return true;
 		} catch (IOException e) {
-			Funky.debugMessage("Invalid link: " + link);
+			FunkySk.debugMessage("Invalid link: " + link);
 		}
 		return false;
 	}
@@ -63,7 +63,7 @@ public class ExprSong extends FunkyExpression<Song> {
 	private Boolean isValidFile(String file) {
 		File f = new File(file);
 		if (f != null && f.exists()) {
-			Funky.debugMessage("Invalid file: " + file);
+			FunkySk.debugMessage("Invalid file: " + file);
 			return true;
 		}
 		return false;

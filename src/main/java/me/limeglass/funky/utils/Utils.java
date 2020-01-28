@@ -8,7 +8,7 @@ import org.bukkit.ChatColor;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.util.Timespan;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 
 public class Utils {
 	
@@ -38,7 +38,7 @@ public class Utils {
 			method.setAccessible(true);
 			return method.invoke(clazz, object.replace("\"", "").trim().replace(" ", "_").toUpperCase());
 		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | SecurityException error) {
-			Funky.consoleMessage("&cUnknown type " + object + " in " + clazz.getName());
+			FunkySk.consoleMessage("&cUnknown type " + object + " in " + clazz.getName());
 			return null;
 		}
 	}

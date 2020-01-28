@@ -12,7 +12,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 import me.limeglass.funky.Syntax;
 import me.limeglass.funky.utils.Utils;
 import me.limeglass.funky.utils.annotations.AllChangers;
@@ -54,8 +54,8 @@ public abstract class FunkyPropertyExpression<F, T> extends PropertyExpression<F
 	public String toString(Event event, boolean debug) {
 		String modSyntax = Syntax.isModified(getClass()) ? "Modified syntax: " + Arrays.toString(getSyntax()) : Arrays.toString(getSyntax());
 		if (expressions != null && event != null) for (Expression<?> expression : expressions.getExpressions()) values.add(expression.getSingle(event));
-		if (event != null) Funky.debugMessage(getClass().getSimpleName() + " - " + modSyntax + " (" + event.getEventName() + ")" + " Data: " + Arrays.toString(values.toArray()));
-		return Funky.getNameplate() + getClass().getSimpleName() + ": the " + getPropertyName() + " of " + getExpr().toString(event, debug);
+		if (event != null) FunkySk.debugMessage(getClass().getSimpleName() + " - " + modSyntax + " (" + event.getEventName() + ")" + " Data: " + Arrays.toString(values.toArray()));
+		return FunkySk.getNameplate() + getClass().getSimpleName() + ": the " + getPropertyName() + " of " + getExpr().toString(event, debug);
 	}
 	
 	@Override
@@ -70,10 +70,10 @@ public abstract class FunkyPropertyExpression<F, T> extends PropertyExpression<F
 	protected Boolean isNull(Event event) {
 		if (getExpr() == null) return true;
 		if (getExpr().isSingle() && getExpr().getSingle(event) == null) {
-			Funky.debugMessage("The property expression was null: " + getExpr().toString(event, true));
+			FunkySk.debugMessage("The property expression was null: " + getExpr().toString(event, true));
 			return true;
 		} else if (getExpr().getAll(event).length == 0 || getExpr().getAll(event) == null) {
-			Funky.debugMessage("The property expression was null: " + getExpr().toString(event, true));
+			FunkySk.debugMessage("The property expression was null: " + getExpr().toString(event, true));
 			return true;
 		}
 		return false;

@@ -13,7 +13,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 import me.limeglass.funky.Syntax;
 import me.limeglass.funky.utils.Utils;
 import me.limeglass.funky.utils.annotations.AllChangers;
@@ -66,7 +66,7 @@ public abstract class FunkyExpression<T> extends SimpleExpression<T> implements 
 	public String toString(Event event, boolean debug) {
 		String modSyntax = Syntax.isModified(getClass()) ? "Modified syntax: " + Arrays.toString(getSyntax()) : Arrays.toString(getSyntax());
 		if (expressions != null && event != null) for (Expression<?> expression : expressions.getExpressions()) values.add(expression.getSingle(event));
-		if (event != null) Funky.debugMessage(getClass().getSimpleName() + " - " + modSyntax + " (" + event.getEventName() + ")" + " Data: " + Arrays.toString(values.toArray()));
+		if (event != null) FunkySk.debugMessage(getClass().getSimpleName() + " - " + modSyntax + " (" + event.getEventName() + ")" + " Data: " + Arrays.toString(values.toArray()));
 		return getClass().getSimpleName() + " - " + Arrays.toString(getSyntax());
 	}
 	
@@ -79,15 +79,15 @@ public abstract class FunkyExpression<T> extends SimpleExpression<T> implements 
 		return (Arrays.asList(getClass().getAnnotation(Changers.class).value()).contains(mode)) ? returnable : null;
 	}
 	
-	public <V> Boolean isNull(Event event, Class<?>... types) {
+	public <V> boolean isNull(Event event, @SuppressWarnings("unchecked") Class<V>... types) {
 		return isNull(event, expressions, types);
 	}
 	
-	public Boolean isNull(Event event, int index) {
+	public boolean isNull(Event event, int index) {
 		return isNull(event, expressions, index);
 	}
 
-	public Boolean areNull(Event event) {
+	public boolean areNull(Event event) {
 		return areNull(event, expressions);
 	}
 }

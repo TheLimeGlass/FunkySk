@@ -9,7 +9,7 @@ import com.xxmicloxx.NoteBlockAPI.SongEndEvent;
 import com.xxmicloxx.NoteBlockAPI.SongPlayer;
 import com.xxmicloxx.NoteBlockAPI.SongStoppedEvent;
 
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 import me.limeglass.funky.utils.MusicManager;
 
 import java.util.Map.Entry;
@@ -19,7 +19,7 @@ public class MusicListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerQuitEvent event) {
-		if (Funky.getInstance().getConfig().getBoolean("PlayerDisconnectSong", true)) NoteBlockPlayerMain.stopPlaying(event.getPlayer());
+		if (FunkySk.getInstance().getConfig().getBoolean("PlayerDisconnectSong", true)) NoteBlockPlayerMain.stopPlaying(event.getPlayer());
 	}
 	
 	@EventHandler

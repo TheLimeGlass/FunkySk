@@ -5,7 +5,7 @@ import ch.njol.skript.classes.EnumSerializer;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 import me.limeglass.funky.Syntax;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class EnumClassInfo<E extends Enum<E>> {
 
 	public void register() {
 		if (Classes.getExactClassInfo(enumType) == null) {
-			if (Funky.getInstance().getConfig().getBoolean("UseEnglishEnums")) {
+			if (FunkySk.getInstance().getConfig().getBoolean("UseEnglishEnums")) {
 				Classes.registerClass(classInfo.user(user).parser(new LangEnumParser<E>(codeName, enumType)).serializer(new EnumSerializer<>(enumType)));
 			} else {
 				Classes.registerClass(classInfo.user(user).parser(new Parser<E>() {
@@ -90,16 +90,16 @@ public class EnumClassInfo<E extends Enum<E>> {
 				for (final E e : enumType.getEnumConstants()) {
 					enums.add(e.name());
 				}
-				Funky.getSyntaxData().set("Syntax.Enums." + enumType.getSimpleName() + ".enums", enums);
+				FunkySk.getSyntaxData().set("Syntax.Enums." + enumType.getSimpleName() + ".enums", enums);
 			}
 			enumDebug("&5Registered Enum '" + codeName + "' with return class " + enumType.getName(), codeName, enumType);
 		}
 	}
 	
 	private void enumDebug(String message, String codeName, Class<?> clazz) {
-		if (codeName.equalsIgnoreCase(Funky.getInstance().getConfig().getString("syntaxDebug"))) Funky.debugMessage("&eRegistered syntaxDebug found enum classinfo: " + codeName + " (" + clazz.getCanonicalName() + ")");
-		else Funky.debugMessage("&5Registered Enum '" + codeName + "' with return class " + enumType.getName());
-		Funky.getSyntaxData().set("Syntax.Enums." + clazz.getSimpleName() + ".user", user);
+		if (codeName.equalsIgnoreCase(FunkySk.getInstance().getConfig().getString("syntaxDebug"))) FunkySk.debugMessage("&eRegistered syntaxDebug found enum classinfo: " + codeName + " (" + clazz.getCanonicalName() + ")");
+		else FunkySk.debugMessage("&5Registered Enum '" + codeName + "' with return class " + enumType.getName());
+		FunkySk.getSyntaxData().set("Syntax.Enums." + clazz.getSimpleName() + ".user", user);
 		Syntax.save();
 	}
 }

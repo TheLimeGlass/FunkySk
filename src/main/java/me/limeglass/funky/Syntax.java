@@ -29,39 +29,39 @@ public class Syntax {
 		else if (SimpleEvent.class.isAssignableFrom(syntaxClass)) type = "Events";
 		else if (PropertyExpression.class.isAssignableFrom(syntaxClass)) type = "PropertyExpressions";
 		String node = "Syntax." + type + "." + syntaxClass.getSimpleName() + ".";
-		if (!Funky.getSyntaxData().isSet(node + "enabled")) {
-			Funky.getSyntaxData().set(node + "enabled", true);
+		if (!FunkySk.getSyntaxData().isSet(node + "enabled")) {
+			FunkySk.getSyntaxData().set(node + "enabled", true);
 			save();
 		}
 		if (syntaxClass.isAnnotationPresent(Changers.class) || syntaxClass.isAnnotationPresent(AllChangers.class)) {
-			if (syntaxClass.isAnnotationPresent(AllChangers.class)) Funky.getSyntaxData().set(node + "changers", "All changers");
+			if (syntaxClass.isAnnotationPresent(AllChangers.class)) FunkySk.getSyntaxData().set(node + "changers", "All changers");
 			else {
 				ChangeMode[] changers = syntaxClass.getAnnotation(Changers.class).value();
-				Funky.getSyntaxData().set(node + "changers", Arrays.toString(changers));
+				FunkySk.getSyntaxData().set(node + "changers", Arrays.toString(changers));
 			}
 			save();
 		}
 		if (syntaxClass.isAnnotationPresent(Description.class)) {
 			String[] descriptions = syntaxClass.getAnnotation(Description.class).value();
-			Funky.getSyntaxData().set(node + "description", descriptions[0]);
+			FunkySk.getSyntaxData().set(node + "description", descriptions[0]);
 			save();
 		}
-		if (!Funky.getSyntaxData().getBoolean(node + "enabled")) {
-			if (Funky.getInstance().getConfig().getBoolean("NotRegisteredSyntax", false)) Funky.consoleMessage(node.toString() + " didn't register!");
+		if (!FunkySk.getSyntaxData().getBoolean(node + "enabled")) {
+			if (FunkySk.getInstance().getConfig().getBoolean("NotRegisteredSyntax", false)) FunkySk.consoleMessage(node.toString() + " didn't register!");
 			return null;
 		}
-		if (!Funky.getSyntaxData().isSet(node + "syntax")) {
-			Funky.getSyntaxData().set(node + "syntax", syntax);
+		if (!FunkySk.getSyntaxData().isSet(node + "syntax")) {
+			FunkySk.getSyntaxData().set(node + "syntax", syntax);
 			save();
 			return add(syntaxClass.getSimpleName(), syntax);
 		}
-		List<String> data = Funky.getSyntaxData().getStringList(node + "syntax");
+		List<String> data = FunkySk.getSyntaxData().getStringList(node + "syntax");
 		if (!Utils.compareArrays(data.toArray(new String[data.size()]), syntax)) modified.put(syntaxClass.getSimpleName(), syntax);
-		if (Funky.getSyntaxData().isList(node + "syntax")) {
-			List<String> syntaxes = Funky.getSyntaxData().getStringList(node + "syntax");
+		if (FunkySk.getSyntaxData().isList(node + "syntax")) {
+			List<String> syntaxes = FunkySk.getSyntaxData().getStringList(node + "syntax");
 			return add(syntaxClass.getSimpleName(), syntaxes.toArray(new String[syntaxes.size()]));
 		}
-		return add(syntaxClass.getSimpleName(), new String[]{Funky.getSyntaxData().getString(node + "syntax")});
+		return add(syntaxClass.getSimpleName(), new String[]{FunkySk.getSyntaxData().getString(node + "syntax")});
 	}
 	
 	public static Boolean isModified(@SuppressWarnings("rawtypes") Class syntaxClass) {
@@ -81,7 +81,7 @@ public class Syntax {
 	
 	public static void save() {
 		try {
-			Funky.getSyntaxData().save(Funky.syntaxFile);
+			FunkySk.getSyntaxData().save(FunkySk.syntaxFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

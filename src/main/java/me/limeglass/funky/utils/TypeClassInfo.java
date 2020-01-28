@@ -5,7 +5,7 @@ import ch.njol.skript.classes.Parser;
 import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 
 public class TypeClassInfo<T> {
 
@@ -58,7 +58,7 @@ public class TypeClassInfo<T> {
 				public String toVariableNameString(T t) {
 					return codeName + ':' + t.toString();
 			}}).serializeAs(clazz));
-			Funky.debugMessage("&5Registered Type '" + codeName + "' with return class " + clazz.getName());
+			FunkySk.debugMessage("&5Registered Type '" + codeName + "' with return class " + clazz.getName());
 		}
 	}
 }

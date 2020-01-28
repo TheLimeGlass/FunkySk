@@ -18,7 +18,7 @@ import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 import me.limeglass.funky.Metrics;
 import me.limeglass.funky.Syntax;
 import me.limeglass.funky.utils.EnumClassInfo;
@@ -36,13 +36,13 @@ public class Register {
 		try {
 			Method method = JavaPlugin.class.getDeclaredMethod("getFile");
 			method.setAccessible(true);
-			File file = (File) method.invoke(Funky.getInstance());
+			File file = (File) method.invoke(FunkySk.getInstance());
 			Stocksaddon = new JarFile(file);
 			for (Enumeration<JarEntry> jarEntry = Stocksaddon.entries(); jarEntry.hasMoreElements();) {
 				String name = jarEntry.nextElement().getName().replace("/", ".");
 				String className = name.substring(0, name.length() - 6);
 				className = className.replace('/', '.');
-				if (name.startsWith(Funky.getPackageName()) && name.endsWith(".class")) {
+				if (name.startsWith(FunkySk.getPackageName()) && name.endsWith(".class")) {
 					classes.add(Class.forName(className));
 				}
 			}
@@ -68,7 +68,7 @@ public class Register {
 					}
 					String[] values = new String[]{input1 + " " + properties[1] + " of" + additions + "%" + properties[0] + "%", input2 + "%" + properties[0] + "%['s]"  + additions.replace("[the] ", "") + properties[1]};
 					syntax = Syntax.register(clazz, values);
-					if (syntax == null) Funky.debugMessage("&cThere was an issue registering the syntax for " + clazz.getName() + ". Make sure that the SyntaxToggles.yml is set for this syntax.");
+					if (syntax == null) FunkySk.debugMessage("&cThere was an issue registering the syntax for " + clazz.getName() + ". Make sure that the SyntaxToggles.yml is set for this syntax.");
 				} else {
 					continue run;
 				}
@@ -97,17 +97,17 @@ public class Register {
 				if (syntax != null) {
 					if (Effect.class.isAssignableFrom(clazz)) {
 						Skript.registerEffect(clazz, syntax);
-						Funky.debugMessage("&5Registered Effect " + clazz.getSimpleName() + " (" + clazz.getCanonicalName() + ") with syntax " + Arrays.toString(syntax));
+						FunkySk.debugMessage("&5Registered Effect " + clazz.getSimpleName() + " (" + clazz.getCanonicalName() + ") with syntax " + Arrays.toString(syntax));
 					} else if (Condition.class.isAssignableFrom(clazz)) {
 						Skript.registerCondition(clazz, syntax);
-						Funky.debugMessage("&5Registered Condition " + clazz.getSimpleName() + " (" + clazz.getCanonicalName() + ") with syntax " + Arrays.toString(syntax));
+						FunkySk.debugMessage("&5Registered Condition " + clazz.getSimpleName() + " (" + clazz.getCanonicalName() + ") with syntax " + Arrays.toString(syntax));
 					} else if (Expression.class.isAssignableFrom(clazz)) {
 						if (clazz.isAnnotationPresent(ExpressionProperty.class)) type = ((ExpressionProperty) clazz.getAnnotation(ExpressionProperty.class)).value();
 						try {
 							Skript.registerExpression(clazz, ((Expression) clazz.newInstance()).getReturnType(), type, syntax);
-							Funky.debugMessage("&5Registered Expression " + type.toString() + " " + clazz.getSimpleName() + " (" + clazz.getCanonicalName() + ") with syntax " + Arrays.toString(syntax));
+							FunkySk.debugMessage("&5Registered Expression " + type.toString() + " " + clazz.getSimpleName() + " (" + clazz.getCanonicalName() + ") with syntax " + Arrays.toString(syntax));
 						} catch (IllegalAccessException | IllegalArgumentException | InstantiationException e) {
-							Funky.consoleMessage("&cFailed to register expression " + clazz.getCanonicalName());
+							FunkySk.consoleMessage("&cFailed to register expression " + clazz.getCanonicalName());
 							e.printStackTrace();
 						}
 					}
@@ -124,6 +124,6 @@ public class Register {
 				return Skript.getVersion().toString();
 			}
 		});
-		Funky.debugMessage("Metrics registered!");
+		FunkySk.debugMessage("Metrics registered!");
 	}
 }

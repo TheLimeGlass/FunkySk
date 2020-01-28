@@ -7,7 +7,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.localization.Language;
 import ch.njol.skript.util.EnumUtils;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 import me.limeglass.funky.Syntax;
 import me.limeglass.funky.lang.FunkyParser;
 
@@ -27,9 +27,9 @@ public class LangEnumParser<T extends Enum<T>> extends FunkyParser<T> {
 			for (final T e : clazz.getEnumConstants()) {
 				enumNames.addAll(Arrays.asList(Language.get_(variableNamePattern + "s" + "." + e.name())));
 			}
-			Funky.getSyntaxData().set("Syntax.Enums." + clazz.getSimpleName() + ".names", enumNames);
+			FunkySk.getSyntaxData().set("Syntax.Enums." + clazz.getSimpleName() + ".names", enumNames);
 		} catch (NullPointerException error) {
-			Funky.consoleMessage("&cThe class: " + clazz.getName() +  " for classinfo name: " + variableNamePattern + " isn't an Enum!");
+			FunkySk.consoleMessage("&cThe class: " + clazz.getName() +  " for classinfo name: " + variableNamePattern + " isn't an Enum!");
 		}
 		Syntax.save();
 	}

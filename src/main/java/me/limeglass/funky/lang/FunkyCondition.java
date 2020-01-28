@@ -8,7 +8,7 @@ import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
-import me.limeglass.funky.Funky;
+import me.limeglass.funky.FunkySk;
 import me.limeglass.funky.Syntax;
 
 public abstract class FunkyCondition extends Condition implements DataChecker {
@@ -33,23 +33,23 @@ public abstract class FunkyCondition extends Condition implements DataChecker {
 		ArrayList<String> values = new ArrayList<String>();
 		String modSyntax = Syntax.isModified(getClass()) ? "Modified syntax: " + Arrays.toString(getSyntax()) : Arrays.toString(getSyntax());
 		if (event == null) {
-			Funky.debugMessage(getClass().getSimpleName() + " - " + modSyntax);
+			FunkySk.debugMessage(getClass().getSimpleName() + " - " + modSyntax);
 		} else {
 			Arrays.asList(expressions.getExpressions()).stream().forEach(expression->values.add(expression.toString(event, debug)));
-			Funky.debugMessage(getClass().getSimpleName() + " - " + modSyntax + " (" + event.getEventName() + ")" + " Data: " + Arrays.toString(values.toArray()));
+			FunkySk.debugMessage(getClass().getSimpleName() + " - " + modSyntax + " (" + event.getEventName() + ")" + " Data: " + Arrays.toString(values.toArray()));
 		}
-		return Funky.getNameplate() + getClass().getSimpleName() + "- Syntax: " + getSyntax();
+		return FunkySk.getNameplate() + getClass().getSimpleName() + "- Syntax: " + getSyntax();
 	}
 
-	public <V> Boolean isNull(Event event, Class<?>... types) {
+	public <V> boolean isNull(Event event, @SuppressWarnings("unchecked") Class<V>... types) {
 		return isNull(event, expressions, types);
 	}
 	
-	public Boolean isNull(Event event, int index) {
+	public boolean isNull(Event event, int index) {
 		return isNull(event, expressions, index);
 	}
 
-	public Boolean areNull(Event event) {
+	public boolean areNull(Event event) {
 		return areNull(event, expressions);
 	}
 }
